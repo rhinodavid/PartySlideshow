@@ -15,6 +15,6 @@
 
 - (id)initWithBaseURL:(NSURL*)url;
 - (int)syncPhotos;
-- (DWPhoto*)getNextPhoto;
+- (DWPhoto*)nextPhoto;
 
 @end

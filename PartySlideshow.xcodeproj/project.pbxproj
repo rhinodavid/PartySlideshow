@@ -21,6 +21,7 @@
 		E51D27F718D92BC200F593AC /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51D27F618D92BC200F593AC /* Quartz.framework */; };
 		E51D27FA18DA657F00F593AC /* DWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D27F918DA657F00F593AC /* DWPhoto.m */; };
 		E51D27FD18DA6A3100F593AC /* DWSlideshowSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D27FC18DA6A3100F593AC /* DWSlideshowSource.m */; };
+		E51D27FF18DA7C0400F593AC /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51D27FE18DA7C0400F593AC /* CoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		E51D27F918DA657F00F593AC /* DWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPhoto.m; sourceTree = "<group>"; };
 		E51D27FB18DA6A3100F593AC /* DWSlideshowSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWSlideshowSource.h; sourceTree = "<group>"; };
 		E51D27FC18DA6A3100F593AC /* DWSlideshowSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWSlideshowSource.m; sourceTree = "<group>"; };
+		E51D27FE18DA7C0400F593AC /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E51D27FF18DA7C0400F593AC /* CoreServices.framework in Frameworks */,
 				E51D27F718D92BC200F593AC /* Quartz.framework in Frameworks */,
 				E51D27C118D7BC1600F593AC /* Cocoa.framework in Frameworks */,
 			);
@@ -104,6 +107,7 @@
 		E51D27BF18D7BC1600F593AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E51D27FE18DA7C0400F593AC /* CoreServices.framework */,
 				E51D27F618D92BC200F593AC /* Quartz.framework */,
 				E51D27C018D7BC1600F593AC /* Cocoa.framework */,
 				E51D27DF18D7BC1600F593AC /* XCTest.framework */,

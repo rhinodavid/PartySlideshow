@@ -7,13 +7,27 @@
 //
 
 #import "AppDelegate.h"
+#import "DWSlideshowSource.h"
+#import "DWPhoto.h"
+#include <CoreServices/CoreServices.h>
+
+
+void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents,
+                                 void *eventPaths,
+                                 const FSEventStreamEventFlags eventFlags[],
+                                 const FSEventStreamEventId eventIds[]) {
+    DWSlideshowSource * slideshowSource = CFBridgingRelease(clientCallBackInfo);
+    [slideshowSource syncPhotos];
+}
 
 @implementation AppDelegate
+{
+    DWSlideshowSource *slideshowSource;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    _fileList = [NSMutableArray new];
     AppDelegate * __weak weakSelf = self;
     NSOpenGLContext *context = [[weakSelf glView] openGLContext];
     NSOpenGLPixelFormat *format = [[weakSelf glView] pixelFormat];
@@ -24,8 +38,8 @@
 
 - (IBAction)playSlideshow:(id)sender
 {
-
-    NSImage *newImage = [[NSImage alloc] initWithContentsOfFile:[self returnFullImagePath:[_fileList firstObject]]];
+    DWPhoto *nextPhoto = [slideshowSource nextPhoto];
+    NSImage *newImage = [[NSImage alloc] initWithContentsOfFile:nextPhoto.path];
     [[self topPhoto] setObjectValue: newImage];
 }
 
@@ -57,14 +71,36 @@
         //Get the first URL returned from the open panel and set it at the first path component of the control.
         NSURL *url  = [[openPanel URLs] objectAtIndex:0];
         [weakSelf.pathControl setURL:url];
+        [self updateSlideshowSourceWithURL:url];
     }];
 }
 
-- (NSString*)returnFullImagePath:(NSString*)fileName
-{
-    AppDelegate * __weak weakSelf = self;
-    NSString *basePath = [[weakSelf.pathControl URL] path];
-    return [[basePath stringByAppendingString:@"/"] stringByAppendingString:fileName];
+- (void) updateSlideshowSourceWithURL:(NSURL*)url {
+    slideshowSource = [[DWSlideshowSource alloc] initWithBaseURL:url];
+    [self establishListenerForURL:url];
+}
+
+- (void) establishListenerForURL:(NSURL*)url {
+    
+    CFStringRef mypath = (CFStringRef)CFBridgingRetain(url.path);
+    CFArrayRef pathsToWatch = CFArrayCreate(NULL, (const void **)&mypath, 1, NULL);
+    void *slideshowSourcePointer = (__bridge void *)slideshowSource;
+    FSEventStreamContext context = {0, slideshowSourcePointer, NULL, NULL, NULL};
+    //void *callbackInfo = (void *)CFBridgingRetain(slideshowSource);
+    //void * callbackInfo = NULL;
+    //void * callbackInfo = (__bridge void *)(myString);
+    FSEventStreamRef stream;
+    CFAbsoluteTime latency = 3.0;
+    stream = FSEventStreamCreate(NULL,
+                                 &myCallbackFunction,
+                                 &context,
+                                 pathsToWatch,
+                                 kFSEventStreamEventIdSinceNow,
+                                 latency,
+                                 kFSEventStreamCreateFlagFileEvents); //could FlagNone?
+    FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    FSEventStreamStart(stream);
+    CFRunLoopRun();
 }
 
 @end

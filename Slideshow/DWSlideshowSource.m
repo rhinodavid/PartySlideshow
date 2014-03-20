@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         _baseURL = url;
+        photos = [NSMutableArray new];
         [self syncPhotos];
     }
     return self;
@@ -39,7 +40,7 @@
     for (NSString* currentFileName in currentFilesFiltered) {
         if (![self havePhotoNamed:currentFileName]) {
             //if the photo isn't in the list, add it
-            [photos addObject:[[DWPhoto alloc] initWithFileName:currentFileName]];
+            [photos addObject:[[DWPhoto alloc] initWithFileName:currentFileName baseURL:self.baseURL]];
             addedPhotos++;
         }
     }
@@ -56,7 +57,7 @@
 }
 
 
-- (DWPhoto*)getNextPhoto{
+- (DWPhoto*)nextPhoto{
     //return nil if there are no photos to display
     if (![self photosToDisplay]) return nil;
     
@@ -64,6 +65,7 @@
     //if not, just pick a random picture
     for (DWPhoto *photo in photos) {
         if ((photo.displayCount == 0) && photo.display) {
+            [photo photoWillBeDisplayed];
             return photo;
         }
     }
@@ -79,12 +81,13 @@
         chosenPhoto = [photos objectAtIndex:ran];
         if (chosenPhoto.display) goodToDisplay = YES;
     }
+    [chosenPhoto photoWillBeDisplayed];
     return chosenPhoto;
 }
 
-- (BOOL)havePhotoNamed:(NSString*)pn {
+- (BOOL)havePhotoNamed:(NSString*)pn { //////******** THIS IS BROKEN... IF STATEMENT IS NOT EVALUATING CORRECTLY& &&*******/////
     for (DWPhoto* thisPhoto in photos) {
-        if ([thisPhoto fileName] == pn) {
+        if (thisPhoto.fileName == pn) {
             return YES;
         }
     }

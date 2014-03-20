@@ -12,7 +12,6 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
     @private
-    NSMutableArray* _fileList;
     QCRenderer* _renderer;
 }
 
