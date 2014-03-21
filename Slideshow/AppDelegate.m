@@ -16,7 +16,8 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
                                  void *eventPaths,
                                  const FSEventStreamEventFlags eventFlags[],
                                  const FSEventStreamEventId eventIds[]) {
-    DWSlideshowSource * slideshowSource = CFBridgingRelease(clientCallBackInfo);
+    //DWSlideshowSource * slideshowSource = CFBridgingRelease(clientCallBackInfo);
+    DWSlideshowSource * slideshowSource = (__bridge DWSlideshowSource *)(clientCallBackInfo);
     [slideshowSource syncPhotos];
 }
 

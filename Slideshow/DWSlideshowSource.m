@@ -85,9 +85,9 @@
     return chosenPhoto;
 }
 
-- (BOOL)havePhotoNamed:(NSString*)pn { //////******** THIS IS BROKEN... IF STATEMENT IS NOT EVALUATING CORRECTLY& &&*******/////
+- (BOOL)havePhotoNamed:(NSString*)pn {
     for (DWPhoto* thisPhoto in photos) {
-        if (thisPhoto.fileName == pn) {
+        if ([thisPhoto.fileName isEqualToString:pn]) {
             return YES;
         }
     }
@@ -105,7 +105,7 @@
 
 - (BOOL)arrary:(NSArray*)a containsPhoto:(DWPhoto*)p {
     for (NSString* n in a) {
-        if (n == p.fileName) {
+        if ([p.fileName isEqualToString:n]) {
             return YES;
         }
     }
