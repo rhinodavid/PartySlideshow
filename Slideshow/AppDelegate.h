@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Quartz/Quartz.h>
+#import "DWSlideshowController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
     @private
-    QCRenderer* _renderer;
 }
 
 @property (assign) IBOutlet NSWindow *controlWindow;
@@ -22,7 +22,6 @@
 @property (weak) IBOutlet NSButton *setPathButton;
 @property (weak) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSSlider *durationSlider;
-@property (weak) IBOutlet NSImageCell *topPhoto;
-@property (weak) IBOutlet NSOpenGLView *glView;
+@property (weak) IBOutlet DWSlideshowController *slideshowController;
 
 @end

@@ -14,14 +14,21 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="controlWindow" destination="QvC-M9-y7g" id="eH0-qH-SsU"/>
+                <outlet property="controller" destination="8Gq-fQ-dwU" id="GV1-hi-6mK"/>
                 <outlet property="durationSlider" destination="XbD-NL-CYS" id="Eko-eP-d2V"/>
-                <outlet property="glView" destination="Jqj-YS-dFO" id="A62-rw-J37"/>
                 <outlet property="pathControl" destination="vrh-6z-Esz" id="Ojd-CF-Ipk"/>
                 <outlet property="playWindow" destination="9bv-vv-wbV" id="5Je-Ma-TPK"/>
                 <outlet property="setPathButton" destination="HM3-uv-jqx" id="Tsh-U0-Q5p"/>
+                <outlet property="slideshowController" destination="8Gq-fQ-dwU" id="kLs-lb-4TG"/>
                 <outlet property="textField" destination="Gxp-1y-iY9" id="qqA-Dm-Vax"/>
                 <outlet property="topPhoto" destination="xaL-2S-MbH" id="oj7-Ul-4ZZ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="8Gq-fQ-dwU" customClass="DWSlideshowController">
+            <connections>
+                <outlet property="openGLView" destination="Jqj-YS-dFO" id="vgp-m6-FZe"/>
+                <outlet property="testView" destination="xaL-2S-MbH" id="gZr-mb-xbC"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -201,7 +208,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="playSlideshow:" target="Voe-Tx-rLC" id="b63-vK-F6R"/>
+                            <action selector="play:" target="8Gq-fQ-dwU" id="lVt-61-Ixf"/>
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-zz-S20">
@@ -254,19 +261,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="WNo-4V-EvK">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNo-4V-EvK">
+                        <rect key="frame" x="0.0" y="144" width="149" height="126"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="xaL-2S-MbH"/>
                     </imageView>
-                    <openGLView fixedFrame="YES" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqj-YS-dFO">
-                        <rect key="frame" x="187" y="36" width="308" height="167"/>
+                    <openGLView fixedFrame="YES" depthSize="16bit" samplingRate="4" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqj-YS-dFO">
+                        <rect key="frame" x="187" y="0.0" width="308" height="167"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </openGLView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="WNo-4V-EvK" secondAttribute="trailing" id="2ih-vs-sFF"/>
-                    <constraint firstAttribute="bottom" secondItem="WNo-4V-EvK" secondAttribute="bottom" id="5mu-Fp-VEA"/>
                     <constraint firstItem="WNo-4V-EvK" firstAttribute="top" secondItem="cC6-17-vHJ" secondAttribute="top" id="8vs-9o-Rzh"/>
                     <constraint firstItem="WNo-4V-EvK" firstAttribute="leading" secondItem="cC6-17-vHJ" secondAttribute="leading" id="Cm3-o7-gzt"/>
                     <constraint firstItem="WNo-4V-EvK" firstAttribute="leading" secondItem="cC6-17-vHJ" secondAttribute="leading" id="EFj-1q-yaB"/>

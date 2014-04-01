@@ -29,19 +29,13 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
-    AppDelegate * __weak weakSelf = self;
-    NSOpenGLContext *context = [[weakSelf glView] openGLContext];
-    NSOpenGLPixelFormat *format = [[weakSelf glView] pixelFormat];
-    _renderer = [[QCRenderer alloc] initWithOpenGLContext:context pixelFormat:format file:nil];
 
 }
 
 
 - (IBAction)playSlideshow:(id)sender
 {
-    DWPhoto *nextPhoto = [slideshowSource nextPhoto];
-    NSImage *newImage = [[NSImage alloc] initWithContentsOfFile:nextPhoto.path];
-    [[self topPhoto] setObjectValue: newImage];
+
 }
 
 
@@ -78,6 +72,7 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
 
 - (void) updateSlideshowSourceWithURL:(NSURL*)url {
     slideshowSource = [[DWSlideshowSource alloc] initWithBaseURL:url];
+    [_slideshowController setSlideshowSource:slideshowSource];
     [self establishListenerForURL:url];
 }
 
@@ -102,6 +97,13 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
     FSEventStreamScheduleWithRunLoop(stream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     FSEventStreamStart(stream);
     CFRunLoopRun();
+}
+
+
+-(void)keyDown:(NSEvent *)theEvent {
+    if ([theEvent keyCode] == 0x35 ) {
+        [NSApp terminate:nil];
+    }
 }
 
 @end
