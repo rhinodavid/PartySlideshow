@@ -12,8 +12,6 @@
 @interface DWSlideshowController : NSObject
 
 @property DWSlideshowSource *slideshowSource;
-@property (strong) IBOutlet NSOpenGLView *openGLView;
-@property (weak)   IBOutlet NSImageCell *testView;
 
 
 -(IBAction)play:(id)sender;

@@ -34,7 +34,7 @@
         localFileManager = [NSFileManager new];
     }
     NSArray *currentFiles = [localFileManager contentsOfDirectoryAtPath:[_baseURL path] error:nil];
-    NSPredicate *jpgFilter = [NSPredicate predicateWithFormat:@"(self ENDSWITH '.jpg') OR (self ENDSWITH '.jpeg')"];
+    NSPredicate *jpgFilter = [NSPredicate predicateWithFormat:@"(self ENDSWITH '.jpg') OR (self ENDSWITH '.jpeg') OR (self ENDSWITH '.JPG') OR (self ENDSWITH '.JPEG')"];
     NSArray *currentFilesFiltered = [currentFiles filteredArrayUsingPredicate:jpgFilter];
     
     for (NSString* currentFileName in currentFilesFiltered) {

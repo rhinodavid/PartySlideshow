@@ -29,13 +29,15 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+    [self.pathControl setDelegate:self];
 
 }
 
 
 - (IBAction)playSlideshow:(id)sender
 {
-
+    [self updateSlideshowSourceWithURL:[self.pathControl URL]];
+    [[self slideshowController] play:self];
 }
 
 
@@ -66,7 +68,8 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
         //Get the first URL returned from the open panel and set it at the first path component of the control.
         NSURL *url  = [[openPanel URLs] objectAtIndex:0];
         [weakSelf.pathControl setURL:url];
-        [self updateSlideshowSourceWithURL:url];
+        //NSLog(url);
+        //[self updateSlideshowSourceWithURL:url];
     }];
 }
 
@@ -105,5 +108,6 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
         [NSApp terminate:nil];
     }
 }
+
 
 @end

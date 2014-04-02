@@ -10,7 +10,7 @@
 #import <Quartz/Quartz.h>
 #import "DWSlideshowController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSPathControlDelegate>
 {
     @private
 }

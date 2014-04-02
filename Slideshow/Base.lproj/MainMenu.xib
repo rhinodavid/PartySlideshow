@@ -17,20 +17,13 @@
                 <outlet property="controller" destination="8Gq-fQ-dwU" id="GV1-hi-6mK"/>
                 <outlet property="durationSlider" destination="XbD-NL-CYS" id="Eko-eP-d2V"/>
                 <outlet property="pathControl" destination="vrh-6z-Esz" id="Ojd-CF-Ipk"/>
-                <outlet property="playWindow" destination="9bv-vv-wbV" id="5Je-Ma-TPK"/>
                 <outlet property="setPathButton" destination="HM3-uv-jqx" id="Tsh-U0-Q5p"/>
                 <outlet property="slideshowController" destination="8Gq-fQ-dwU" id="kLs-lb-4TG"/>
                 <outlet property="textField" destination="Gxp-1y-iY9" id="qqA-Dm-Vax"/>
-                <outlet property="topPhoto" destination="xaL-2S-MbH" id="oj7-Ul-4ZZ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
-        <customObject id="8Gq-fQ-dwU" customClass="DWSlideshowController">
-            <connections>
-                <outlet property="openGLView" destination="Jqj-YS-dFO" id="vgp-m6-FZe"/>
-                <outlet property="testView" destination="xaL-2S-MbH" id="gZr-mb-xbC"/>
-            </connections>
-        </customObject>
+        <customObject id="8Gq-fQ-dwU" customClass="DWSlideshowController"/>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -208,7 +201,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
                         <connections>
-                            <action selector="play:" target="8Gq-fQ-dwU" id="lVt-61-Ixf"/>
+                            <action selector="playSlideshow:" target="Voe-Tx-rLC" id="Z1p-qD-6GT"/>
                         </connections>
                     </button>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-zz-S20">
@@ -248,37 +241,6 @@
                         </textFieldCell>
                     </textField>
                 </subviews>
-            </view>
-        </window>
-        <window title="Party Slides" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="9bv-vv-wbV">
-            <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
-            <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="42" y="1099" width="480" height="270"/>
-            <rect key="screenRect" x="-121" y="900" width="1680" height="1028"/>
-            <value key="minSize" type="size" width="480" height="270"/>
-            <view key="contentView" id="cC6-17-vHJ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNo-4V-EvK">
-                        <rect key="frame" x="0.0" y="144" width="149" height="126"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="xaL-2S-MbH"/>
-                    </imageView>
-                    <openGLView fixedFrame="YES" depthSize="16bit" samplingRate="4" useAuxiliaryDepthBufferStencil="NO" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jqj-YS-dFO">
-                        <rect key="frame" x="187" y="0.0" width="308" height="167"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </openGLView>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="WNo-4V-EvK" firstAttribute="top" secondItem="cC6-17-vHJ" secondAttribute="top" id="8vs-9o-Rzh"/>
-                    <constraint firstItem="WNo-4V-EvK" firstAttribute="leading" secondItem="cC6-17-vHJ" secondAttribute="leading" id="Cm3-o7-gzt"/>
-                    <constraint firstItem="WNo-4V-EvK" firstAttribute="leading" secondItem="cC6-17-vHJ" secondAttribute="leading" id="EFj-1q-yaB"/>
-                    <constraint firstAttribute="trailing" secondItem="WNo-4V-EvK" secondAttribute="trailing" id="Jny-iD-pKv"/>
-                    <constraint firstAttribute="bottom" secondItem="WNo-4V-EvK" secondAttribute="bottom" id="S2c-aq-fUo"/>
-                    <constraint firstItem="WNo-4V-EvK" firstAttribute="top" secondItem="cC6-17-vHJ" secondAttribute="top" id="bAf-YW-wam"/>
-                </constraints>
             </view>
         </window>
     </objects>
