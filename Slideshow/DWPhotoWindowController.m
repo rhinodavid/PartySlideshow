@@ -15,9 +15,9 @@
 @implementation DWPhotoWindowController
 {
     @private
-    CATransition *transition;
-    NSImageView *sourceImageView;
-    NSImageView *destinationImageView;
+    CATransition    *transition;
+    NSImageView     *currentImageView;
+
 }
 
 - (id)initWithWindow:(NSWindow *)window
@@ -35,43 +35,48 @@
     [super windowDidLoad];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSView *contentView = [[self window] contentView];
+    //[contentView setAutoresizingMask:NO];
     [contentView setWantsLayer:YES];
     transition = [CATransition animation];
     [transition setType:kCATransitionFade];
     [transition setDelegate:self];
+    [transition setDuration:2.0];
     NSDictionary *ani = [NSDictionary dictionaryWithObject: transition forKey:@"subviews"];
     [contentView setAnimations:ani];
+    
 
 }
 
 -(void)updateImage: (NSImage*) newImage {
-    
-   // [_sourcePhoto setImage:newImage];
-    if (!sourceImageView) {
-        //first run.  no source.  make a blank one
-        sourceImageView = [[NSImageView alloc] initWithFrame:[[[self window] contentView] frame]];
-        [[[self window] contentView] addSubview: sourceImageView];
-    }
-    if (!destinationImageView) {
-        //first run.  no destination.  make one.
-        destinationImageView = [[NSImageView alloc] initWithFrame:[[[self window] contentView] frame]];
-        //[[[self window] contentView] addSubview: sourceImageView];
-    }
-    [sourceImageView setImage:[destinationImageView image]]; //may not work the first time
-
     NSView *contentView = [[self window] contentView];
-    [destinationImageView setImage:newImage];
-    [[contentView animator] replaceSubview:sourceImageView with:destinationImageView];
-
+    NSImageView *newImageView = nil;
+    if (newImage) {
+        newImageView = [[NSImageView alloc] initWithFrame:[contentView bounds]];
+        [newImageView setImage:newImage];
+        [newImageView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+    }
+    if (currentImageView && newImageView) {
+        NSLog(@"if branch");
+        [[contentView animator] replaceSubview:currentImageView with:newImageView];
+    } else {
+        NSLog(@"else branch");
+        if (currentImageView) {
+            NSLog(@"currentImageView branch");
+            [[currentImageView animator] removeFromSuperview];
+        }
+        if (newImageView) {
+            NSLog(@"newImageView branch");
+            [[contentView animator] addSubview:newImageView];
+        }
+    }
+    currentImageView = newImageView;
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if(flag) {
         NSLog(@"animation stopped yes");
-        NSView *contentView = [[self window] contentView];
-        //[sourceImageView setHidden:YES];
-        [sourceImageView setImage:[destinationImageView image]];
-        [contentView replaceSubview:destinationImageView with:sourceImageView];
+       // [sourceImageView setImage:[destinationImageView image]];
+       // [destinationImageView removeFromSuperview];
     } else {
         NSLog(@"animation stopped no");
     }

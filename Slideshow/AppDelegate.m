@@ -40,6 +40,10 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
     [[self slideshowController] play:self];
 }
 
+- (IBAction)stopSlideshow:(id)sender {
+    [[self slideshowController] stop];
+}
+
 
 - (IBAction)showPathOpenPanel:(id)sender
 {

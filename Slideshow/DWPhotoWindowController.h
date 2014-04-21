@@ -11,10 +11,6 @@
 
 @interface DWPhotoWindowController : NSWindowController
 
-@property (weak) IBOutlet NSImageView *sourcePhoto;
-@property (weak) IBOutlet NSImageView *destinationPhoto;
-
-
 -(void)updateImage: (NSImage*) newImage;
 
 @end

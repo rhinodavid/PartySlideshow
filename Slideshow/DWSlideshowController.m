@@ -14,7 +14,7 @@
 {
     @private
     DWPhotoWindowController *controllerWindow;
-    
+    NSTimer                 *slideshowTimer;
 
 }
 
@@ -31,19 +31,27 @@
 }
 
 -(IBAction)play:(id)sender {
-
+    //show window
     if (!controllerWindow) {
         controllerWindow = [[DWPhotoWindowController alloc] initWithWindowNibName:@"DWSlideWindow"];
-        [controllerWindow showWindow:self];
     }
-    NSString *nextPath = [[_slideshowSource nextPhoto] path];
-    NSLog(nextPath);
-    NSImage *image = [[NSImage alloc] initWithContentsOfFile:nextPath];
-    [controllerWindow updateImage:image];
-    
+    [controllerWindow showWindow:self];
+    //make a timer at the correct interval
+    [self showNextImage:nil];
+    slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(showNextImage:) userInfo:nil repeats:YES];
+    [slideshowTimer setTolerance:0.5];
 
 }
 
+-(void)stop {
+    [slideshowTimer invalidate];
+    [controllerWindow close];
+}
 
+-(void)showNextImage:(NSTimer*)timer {
+    NSString *nextPath = [[_slideshowSource nextPhoto] path];
+    NSImage *image = [[NSImage alloc] initWithContentsOfFile:nextPath];
+    [controllerWindow updateImage:image];
+}
 
 @end

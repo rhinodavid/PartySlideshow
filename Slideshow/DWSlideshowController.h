@@ -15,5 +15,6 @@
 
 
 -(IBAction)play:(id)sender;
+-(void)stop;
 
 @end
