@@ -26,6 +26,7 @@
     if (self) {
         // Initialization code here.
         NSLog(@"initwithwindow called");
+        
     }
     return self;
 }
@@ -33,6 +34,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    [self.window setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSView *contentView = [[self window] contentView];
     //[contentView setAutoresizingMask:NO];
@@ -43,6 +45,7 @@
     [transition setDuration:2.0];
     NSDictionary *ani = [NSDictionary dictionaryWithObject: transition forKey:@"subviews"];
     [contentView setAnimations:ani];
+    [self.window setLevel: NSMainMenuWindowLevel];
     
 
 }
