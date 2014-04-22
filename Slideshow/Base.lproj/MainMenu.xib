@@ -13,13 +13,17 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="backgroundColor" destination="id3-MS-l0A" id="Q94-pp-UkN"/>
+                <outlet property="backgroundColorWell" destination="id3-MS-l0A" id="AMV-Cv-rFh"/>
                 <outlet property="controlWindow" destination="QvC-M9-y7g" id="eH0-qH-SsU"/>
                 <outlet property="controller" destination="8Gq-fQ-dwU" id="GV1-hi-6mK"/>
                 <outlet property="durationSlider" destination="XbD-NL-CYS" id="Eko-eP-d2V"/>
                 <outlet property="pathControl" destination="vrh-6z-Esz" id="Ojd-CF-Ipk"/>
+                <outlet property="playButton" destination="2Yx-by-g3V" id="fNm-0M-BDW"/>
                 <outlet property="setPathButton" destination="HM3-uv-jqx" id="Tsh-U0-Q5p"/>
                 <outlet property="slideshowController" destination="8Gq-fQ-dwU" id="kLs-lb-4TG"/>
-                <outlet property="textField" destination="Gxp-1y-iY9" id="qqA-Dm-Vax"/>
+                <outlet property="stopButton" destination="uV0-0Q-jyV" id="WZR-ej-Cg6"/>
+                <outlet property="timeDelay" destination="Gxp-1y-iY9" id="4Je-pK-m8K"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -153,7 +157,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <pathControl verticalHuggingPriority="750" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrh-6z-Esz">
+                    <pathControl verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrh-6z-Esz">
                         <rect key="frame" x="21" y="288" width="440" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <pathCell key="cell" controlSize="small" selectable="YES" editable="YES" alignment="left" placeholderString="Drag a folder to watch for photos here..." id="Nqh-CH-Wv7">
@@ -164,9 +168,12 @@
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XbD-NL-CYS">
                         <rect key="frame" x="106" y="196" width="92" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="1" maxValue="60" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="8hr-xF-oEd"/>
+                        <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="2" maxValue="60" doubleValue="6" tickMarkPosition="above" sliderType="linear" id="8hr-xF-oEd"/>
+                        <connections>
+                            <action selector="changeTimeInterval:" target="Voe-Tx-rLC" id="FdQ-oe-xKD"/>
+                        </connections>
                     </slider>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDT-xT-BgY">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fDT-xT-BgY">
                         <rect key="frame" x="162" y="317" width="157" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Party Time" id="NrG-VV-qde">
@@ -207,19 +214,17 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-zz-S20">
                         <rect key="frame" x="106" y="146" width="181" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2WY-xE-LMQ" id="p4h-s7-BGl">
+                        <popUpButtonCell key="cell" type="push" title="Fade" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2WY-xE-LMQ" id="p4h-s7-BGl">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="znz-BY-RZE">
                                 <items>
-                                    <menuItem title="Item 1" state="on" id="2WY-xE-LMQ"/>
-                                    <menuItem title="Item 2" id="eCk-SQ-7KL"/>
-                                    <menuItem title="Item 3" id="0ov-EL-Znx"/>
+                                    <menuItem title="Fade" id="2WY-xE-LMQ"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HM3-uv-jqx">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HM3-uv-jqx">
                         <rect key="frame" x="175" y="259" width="133" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="recessed" title="Select Photo Folder" bezelStyle="recessed" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Deb-WI-FnB">
@@ -243,7 +248,7 @@
                     <button appearanceType="aqua" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uV0-0Q-jyV">
                         <rect key="frame" x="274" y="19" width="80" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JBO-DM-rtS">
+                        <buttonCell key="cell" type="push" title="Stop" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JBO-DM-rtS">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                         </buttonCell>
@@ -251,7 +256,29 @@
                             <action selector="stopSlideshow:" target="Voe-Tx-rLC" id="4WB-Gf-elt"/>
                         </connections>
                     </button>
+                    <colorWell appearanceType="aqua" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="id3-MS-l0A">
+                        <rect key="frame" x="109" y="100" width="44" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </colorWell>
+                    <textField appearanceType="aqua" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MNF-8G-qPZ">
+                        <rect key="frame" x="20" y="104" width="68" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Background" id="7HU-N4-i4l">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="vrh-6z-Esz" secondAttribute="trailing" constant="19" id="DPY-we-GqA"/>
+                    <constraint firstItem="HM3-uv-jqx" firstAttribute="top" secondItem="vrh-6z-Esz" secondAttribute="bottom" constant="12" id="PGB-dV-2SM"/>
+                    <constraint firstItem="vrh-6z-Esz" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="58" id="WU9-nn-hIZ"/>
+                    <constraint firstItem="vrh-6z-Esz" firstAttribute="centerX" secondItem="HM3-uv-jqx" secondAttribute="centerX" id="cwY-Jn-Niv"/>
+                    <constraint firstItem="vrh-6z-Esz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="21" id="mkY-Ym-n71"/>
+                    <constraint firstItem="vrh-6z-Esz" firstAttribute="top" secondItem="fDT-xT-BgY" secondAttribute="bottom" constant="15" id="qOX-Yd-Sxy"/>
+                </constraints>
             </view>
         </window>
     </objects>

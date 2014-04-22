@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "DWSlideshowSource.h"
 
-@interface DWSlideshowController : NSObject
+@interface DWSlideshowController : NSObject <NSWindowDelegate>
 
 @property DWSlideshowSource *slideshowSource;
+@property NSColor *backgroundColor;
 
-
--(IBAction)play:(id)sender;
+-(void)play;
+-(void)updateTimeInterval:(double)newTimeInterval;
 -(void)stop;
 
 @end

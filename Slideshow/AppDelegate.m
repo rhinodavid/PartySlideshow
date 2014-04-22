@@ -36,14 +36,32 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
 
 - (IBAction)playSlideshow:(id)sender
 {
-    [self updateSlideshowSourceWithURL:[self.pathControl URL]];
-    [[self slideshowController] play:self];
+    if ([self.pathControl URL] != nil) {
+        [self updateSlideshowSourceWithURL:[self.pathControl URL]];
+        [[self slideshowController] setBackgroundColor:self.backgroundColorWell.color];
+        [[self slideshowController] play];
+        [self.playButton setEnabled:NO];
+        [self.stopButton setEnabled:YES];
+        [self.pathControl setEnabled:NO];
+        [self.setPathButton setEnabled:NO];
+    } else {
+        [[NSAlert alertWithMessageText:@"Choose an image folder" defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:@""] runModal];
+    }
 }
 
 - (IBAction)stopSlideshow:(id)sender {
     [[self slideshowController] stop];
+    [self.playButton setEnabled:YES];
+    [self.stopButton setEnabled:NO];
+    [self.pathControl setEnabled:YES];
+    [self.setPathButton setEnabled:YES];
 }
 
+- (IBAction)changeTimeInterval:(id)sender {
+    [[self slideshowController] updateTimeInterval:[sender doubleValue]];
+    NSString *timeString = [NSString stringWithFormat:@"%2.2f sec", [sender doubleValue]];
+    [[self timeDelay] setStringValue:timeString];
+}
 
 - (IBAction)showPathOpenPanel:(id)sender
 {
@@ -72,6 +90,7 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
         //Get the first URL returned from the open panel and set it at the first path component of the control.
         NSURL *url  = [[openPanel URLs] objectAtIndex:0];
         [weakSelf.pathControl setURL:url];
+        [self.playButton setEnabled:YES];
         //NSLog(url);
         //[self updateSlideshowSourceWithURL:url];
     }];

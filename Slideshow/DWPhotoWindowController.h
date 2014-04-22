@@ -12,6 +12,7 @@
 @interface DWPhotoWindowController : NSWindowController
 
 -(void)updateImage: (NSImage*) newImage;
+@property (strong) NSColor *backgroundColor;
 
 @end
 

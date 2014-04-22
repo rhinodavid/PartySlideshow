@@ -15,13 +15,15 @@
     @private
     DWPhotoWindowController *controllerWindow;
     NSTimer                 *slideshowTimer;
+    NSTimeInterval          timeInterval;
+    
 
 }
 
 -(id) init {
     self = [super init];
     // do special stuff
-
+    timeInterval = 8.0;
     return self;
 }
 
@@ -30,22 +32,50 @@
 
 }
 
--(IBAction)play:(id)sender {
+-(void)play {
     //show window
     if (!controllerWindow) {
         controllerWindow = [[DWPhotoWindowController alloc] initWithWindowNibName:@"DWSlideWindow"];
     }
+    if (self.backgroundColor) {
+        [controllerWindow setBackgroundColor:self.backgroundColor];
+    } else {
+        [controllerWindow setBackgroundColor:NSColor.blackColor];
+    }
     [controllerWindow showWindow:self];
+    [controllerWindow.window setDelegate:self];
     //make a timer at the correct interval
     [self showNextImage:nil];
-    slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(showNextImage:) userInfo:nil repeats:YES];
-    [slideshowTimer setTolerance:0.5];
+    slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(showNextImage:) userInfo:nil repeats:YES];
+    [slideshowTimer setTolerance:0.4];
 
+
+}
+-(void)updateTimeInterval:(double)newTimeInterval {
+    if (newTimeInterval < 2.0) {
+        newTimeInterval = 2.0;
+    }
+    if (newTimeInterval > 60.0) {
+        newTimeInterval = 60.0;
+    }
+    NSLog(@"Time interval changed to: %4.2f", newTimeInterval);
+    timeInterval = (NSTimeInterval)newTimeInterval;
+    if (slideshowTimer) {
+        [slideshowTimer invalidate];
+        slideshowTimer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(showNextImage:) userInfo:nil repeats:YES];
+        [slideshowTimer setTolerance:0.5];
+    }
+    
 }
 
 -(void)stop {
     [slideshowTimer invalidate];
     [controllerWindow close];
+}
+
+-(void)windowWillClose:(NSNotification *)notification {
+    //stop the timer if the window will close
+    [slideshowTimer invalidate];
 }
 
 -(void)showNextImage:(NSTimer*)timer {

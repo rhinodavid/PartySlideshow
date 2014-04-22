@@ -16,12 +16,13 @@
 }
 
 @property (assign) IBOutlet NSWindow *controlWindow;
-@property (assign) IBOutlet NSWindow *playWindow;
 
 @property (weak) IBOutlet NSPathControl *pathControl;
 @property (weak) IBOutlet NSButton *setPathButton;
-@property (weak) IBOutlet NSTextField *textField;
-@property (weak) IBOutlet NSSlider *durationSlider;
+@property (weak) IBOutlet NSTextField *timeDelay;
+@property (weak) IBOutlet NSButton *playButton;
+@property (weak) IBOutlet NSButton *stopButton;
+@property (weak) IBOutlet NSColorWell *backgroundColorWell;
 @property (weak) IBOutlet DWSlideshowController *slideshowController;
 
 @end

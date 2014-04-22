@@ -31,18 +31,21 @@
     return self;
 }
 
+- (void)windowWillLoad {
+    [super windowWillLoad];
+}
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
+    [self.window setBackgroundColor:self.backgroundColor];
     [self.window setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     NSView *contentView = [[self window] contentView];
-    //[contentView setAutoresizingMask:NO];
     [contentView setWantsLayer:YES];
     transition = [CATransition animation];
     [transition setType:kCATransitionFade];
     [transition setDelegate:self];
-    [transition setDuration:2.0];
+    [transition setDuration:1.0];
     NSDictionary *ani = [NSDictionary dictionaryWithObject: transition forKey:@"subviews"];
     [contentView setAnimations:ani];
     [self.window setLevel: NSMainMenuWindowLevel];
