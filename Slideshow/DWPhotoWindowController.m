@@ -55,6 +55,7 @@
     NSImageView *newImageView = nil;
     if (newImage) {
         newImageView = [[NSImageView alloc] initWithFrame:[contentView bounds]];
+        [newImageView setImageScaling:NSImageScaleProportionallyUpOrDown];
         [newImageView setImage:newImage];
         [newImageView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     }
