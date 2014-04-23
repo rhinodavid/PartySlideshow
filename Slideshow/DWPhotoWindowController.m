@@ -55,11 +55,12 @@
 
 -(void)updateImage: (NSImage*) newImage {
     NSView *contentView = [[self window] contentView];
+    NSImage *resizedImage = [DWPhotoWindowController imageResize:newImage newSize:NSMakeSize(1200, 1200)];
     NSImageView *newImageView = nil;
     if (newImage) {
         newImageView = [[NSImageView alloc] initWithFrame:[contentView bounds]];
         [newImageView setImageScaling:NSImageScaleProportionallyUpOrDown];
-        [newImageView setImage:newImage];
+        [newImageView setImage:resizedImage];
         [newImageView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     }
     if (currentImageView && newImageView) {
@@ -87,6 +88,36 @@
     } else {
         NSLog(@"animation stopped no");
     }
+}
+
++ (NSImage *)imageResize:(NSImage*)anImage newSize:(NSSize)newSize {
+    NSImage *sourceImage = anImage;
+    [sourceImage setScalesWhenResized:YES];
+    NSSize oldSize = [sourceImage size];
+    double widthRatio = newSize.width / oldSize.width;
+    double heightRatio = newSize.height / oldSize.height;
+    // if ratios are less than 1 than the image needs to be resized
+    double resizeRatio = widthRatio < heightRatio ? widthRatio : heightRatio;
+    
+    // Report an error if the source isn't a valid image
+    if (![sourceImage isValid])
+    {
+        NSLog(@"Invalid Image");
+    } else if (resizeRatio > 1) {
+        //specified newSize is greater than the input image size; don't resize
+        return sourceImage;
+    } else {
+        //specified image needs to be resized
+        NSSize resizedSize = NSMakeSize(oldSize.width * resizeRatio, oldSize.height * resizeRatio);
+        NSImage *smallImage = [[NSImage alloc] initWithSize: resizedSize];
+        [smallImage lockFocus];
+        [sourceImage setSize: resizedSize];
+        [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+        [sourceImage drawAtPoint:NSZeroPoint fromRect:CGRectMake(0, 0, resizedSize.width, resizedSize.height) operation:NSCompositeCopy fraction:1.0];
+        [smallImage unlockFocus];
+        return smallImage;
+    }
+    return nil;
 }
 
 @end
