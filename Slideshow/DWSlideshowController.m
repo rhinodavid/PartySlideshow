@@ -81,6 +81,10 @@
 -(void)showNextImage:(NSTimer*)timer {
     NSString *nextPath = [[_slideshowSource nextPhoto] path];
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:nextPath];
+    if (!image) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"waiting1" ofType:@"jpg"];
+        image = [[NSImage alloc] initWithContentsOfFile:path];
+    }
     [controllerWindow updateImage:image];
 }
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E51B96EB18E2444E00874620 /* Crossfade.qtz in Resources */ = {isa = PBXBuildFile; fileRef = E51B96EA18E2444E00874620 /* Crossfade.qtz */; };
 		E51D27C118D7BC1600F593AC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51D27C018D7BC1600F593AC /* Cocoa.framework */; };
 		E51D27CB18D7BC1600F593AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E51D27C918D7BC1600F593AC /* InfoPlist.strings */; };
 		E51D27CD18D7BC1600F593AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D27CC18D7BC1600F593AC /* main.m */; };
@@ -23,11 +22,10 @@
 		E51D27FD18DA6A3100F593AC /* DWSlideshowSource.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D27FC18DA6A3100F593AC /* DWSlideshowSource.m */; };
 		E51D27FF18DA7C0400F593AC /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51D27FE18DA7C0400F593AC /* CoreServices.framework */; };
 		E51D280218DBCE6600F593AC /* DWSlideshowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E51D280118DBCE6600F593AC /* DWSlideshowController.m */; };
-		E58A746818E37091009D6BFF /* sphere.qtz in Resources */ = {isa = PBXBuildFile; fileRef = E58A746718E37091009D6BFF /* sphere.qtz */; };
+		E52F2DF319080E3800850FD6 /* waiting1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E52F2DF219080E3800850FD6 /* waiting1.jpg */; };
 		E58A747018EA5C18009D6BFF /* DWSlideWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58A746F18EA5C18009D6BFF /* DWSlideWindow.xib */; };
 		E58A747318EA5F0F009D6BFF /* DWPhotoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58A747218EA5F0F009D6BFF /* DWPhotoWindowController.m */; };
 		E58A747718EA7367009D6BFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58A747618EA7367009D6BFF /* QuartzCore.framework */; };
-		E5ABC1F618E2648D002F589D /* Transition.qtz in Resources */ = {isa = PBXBuildFile; fileRef = E5ABC1F518E2648D002F589D /* Transition.qtz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E51B96EA18E2444E00874620 /* Crossfade.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Crossfade.qtz; sourceTree = "<group>"; };
 		E51D27BD18D7BC1600F593AC /* PartySlideshow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PartySlideshow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E51D27C018D7BC1600F593AC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E51D27C318D7BC1600F593AC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -69,12 +66,11 @@
 		E51D27FE18DA7C0400F593AC /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		E51D280018DBCE6600F593AC /* DWSlideshowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWSlideshowController.h; sourceTree = "<group>"; };
 		E51D280118DBCE6600F593AC /* DWSlideshowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWSlideshowController.m; sourceTree = "<group>"; };
-		E58A746718E37091009D6BFF /* sphere.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = sphere.qtz; sourceTree = "<group>"; };
+		E52F2DF219080E3800850FD6 /* waiting1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = waiting1.jpg; sourceTree = "<group>"; };
 		E58A746F18EA5C18009D6BFF /* DWSlideWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DWSlideWindow.xib; sourceTree = "<group>"; };
 		E58A747118EA5F0F009D6BFF /* DWPhotoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPhotoWindowController.h; sourceTree = "<group>"; };
 		E58A747218EA5F0F009D6BFF /* DWPhotoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPhotoWindowController.m; sourceTree = "<group>"; };
 		E58A747618EA7367009D6BFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E5ABC1F518E2648D002F589D /* Transition.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Transition.qtz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +99,7 @@
 		E51B96E918E241FF00874620 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E51B96EA18E2444E00874620 /* Crossfade.qtz */,
-				E58A746718E37091009D6BFF /* sphere.qtz */,
-				E5ABC1F518E2648D002F589D /* Transition.qtz */,
+				E52F2DF219080E3800850FD6 /* waiting1.jpg */,
 			);
 			name = Resources;
 			path = Slideshow;
@@ -285,12 +279,10 @@
 			files = (
 				E51D27CB18D7BC1600F593AC /* InfoPlist.strings in Resources */,
 				E51D27D918D7BC1600F593AC /* Images.xcassets in Resources */,
-				E5ABC1F618E2648D002F589D /* Transition.qtz in Resources */,
 				E51D27D118D7BC1600F593AC /* Credits.rtf in Resources */,
-				E51B96EB18E2444E00874620 /* Crossfade.qtz in Resources */,
 				E58A747018EA5C18009D6BFF /* DWSlideWindow.xib in Resources */,
 				E51D27D718D7BC1600F593AC /* MainMenu.xib in Resources */,
-				E58A746818E37091009D6BFF /* sphere.qtz in Resources */,
+				E52F2DF319080E3800850FD6 /* waiting1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
