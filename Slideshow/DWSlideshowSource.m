@@ -14,6 +14,7 @@
     @private
     NSMutableArray *photos;
     NSFileManager *localFileManager;
+    DWPhoto *lastPhotoSent;
 }
 
 - (id)initWithBaseURL:(NSURL*)url{
@@ -66,6 +67,7 @@
     for (DWPhoto *photo in photos) {
         if ((photo.displayCount == 0) && photo.display) {
             [photo photoWillBeDisplayed];
+            lastPhotoSent = photo;
             return photo;
         }
     }
@@ -81,6 +83,7 @@
         chosenPhoto = [photos objectAtIndex:ran];
         if (chosenPhoto.display) goodToDisplay = YES;
     }
+    lastPhotoSent = chosenPhoto;
     [chosenPhoto photoWillBeDisplayed];
     return chosenPhoto;
 }
@@ -120,6 +123,10 @@
 
 - (int) getRandomNumberBetween: (int)from to:(int)to {
     return (int)from + arc4random() % (to-from+1);
+}
+
+- (void) hideLastPhotoSent {
+    [lastPhotoSent setDisplay:NO];
 }
 
 @end
