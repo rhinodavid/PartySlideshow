@@ -41,8 +41,13 @@
     for (NSString* currentFileName in currentFilesFiltered) {
         if (![self havePhotoNamed:currentFileName]) {
             //if the photo isn't in the list, add it
-            [photos addObject:[[DWPhoto alloc] initWithFileName:currentFileName baseURL:self.baseURL]];
+            DWPhoto *newPhoto =[[DWPhoto alloc] initWithFileName:currentFileName baseURL:self.baseURL];
+            [photos addObject:newPhoto];
             addedPhotos++;
+            
+            if (_delegate) {
+                [_delegate photoAdded:newPhoto];
+            }
         }
     }
     //check to see if we have more pictures than are in the folder (something has been deleted)

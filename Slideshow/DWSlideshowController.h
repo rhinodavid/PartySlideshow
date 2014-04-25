@@ -10,9 +10,9 @@
 #import "DWSlideshowSource.h"
 #import "CocoaAsyncSocket/GCDAsyncSocket.h"
 
-@interface DWSlideshowController : NSObject <NSWindowDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate>
+@interface DWSlideshowController : NSObject <NSWindowDelegate, NSNetServiceDelegate, GCDAsyncSocketDelegate, DWSlideshowSourceDelegate>
 
-@property DWSlideshowSource *slideshowSource;
+@property (strong, nonatomic) DWSlideshowSource *slideshowSource;
 @property NSColor *backgroundColor;
 
 @property (strong, nonatomic) NSNetService *service;
