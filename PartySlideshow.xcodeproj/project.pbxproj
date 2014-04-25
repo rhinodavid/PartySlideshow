@@ -27,7 +27,8 @@
 		E58A747018EA5C18009D6BFF /* DWSlideWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E58A746F18EA5C18009D6BFF /* DWSlideWindow.xib */; };
 		E58A747318EA5F0F009D6BFF /* DWPhotoWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58A747218EA5F0F009D6BFF /* DWPhotoWindowController.m */; };
 		E58A747718EA7367009D6BFF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E58A747618EA7367009D6BFF /* QuartzCore.framework */; };
-		E5A9A2BD1909D2AB00416680 /* DWPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A9A2BC1909D2AB00416680 /* DWPacket.m */; };
+		E5A9A2CB1909FE8700416680 /* DWPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A9A2C81909FE8700416680 /* DWPacket.m */; };
+		E5A9A2CC1909FE8700416680 /* DWPSSConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E5A9A2CA1909FE8700416680 /* DWPSSConnectionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,8 +76,10 @@
 		E58A747118EA5F0F009D6BFF /* DWPhotoWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPhotoWindowController.h; sourceTree = "<group>"; };
 		E58A747218EA5F0F009D6BFF /* DWPhotoWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPhotoWindowController.m; sourceTree = "<group>"; };
 		E58A747618EA7367009D6BFF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E5A9A2BB1909D2AB00416680 /* DWPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPacket.h; sourceTree = "<group>"; };
-		E5A9A2BC1909D2AB00416680 /* DWPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPacket.m; sourceTree = "<group>"; };
+		E5A9A2C71909FE8700416680 /* DWPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPacket.h; sourceTree = "<group>"; };
+		E5A9A2C81909FE8700416680 /* DWPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPacket.m; sourceTree = "<group>"; };
+		E5A9A2C91909FE8700416680 /* DWPSSConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DWPSSConnectionManager.h; sourceTree = "<group>"; };
+		E5A9A2CA1909FE8700416680 /* DWPSSConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DWPSSConnectionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,14 +169,16 @@
 				E51D27FC18DA6A3100F593AC /* DWSlideshowSource.m */,
 				E51D280018DBCE6600F593AC /* DWSlideshowController.h */,
 				E51D280118DBCE6600F593AC /* DWSlideshowController.m */,
-				E5A9A2BB1909D2AB00416680 /* DWPacket.h */,
-				E5A9A2BC1909D2AB00416680 /* DWPacket.m */,
 				E58A747118EA5F0F009D6BFF /* DWPhotoWindowController.h */,
 				E58A747218EA5F0F009D6BFF /* DWPhotoWindowController.m */,
 				E58A746F18EA5C18009D6BFF /* DWSlideWindow.xib */,
 				E51D27D218D7BC1600F593AC /* AppDelegate.h */,
 				E51D27D318D7BC1600F593AC /* AppDelegate.m */,
 				E51D27D518D7BC1600F593AC /* MainMenu.xib */,
+				E5A9A2C71909FE8700416680 /* DWPacket.h */,
+				E5A9A2C81909FE8700416680 /* DWPacket.m */,
+				E5A9A2C91909FE8700416680 /* DWPSSConnectionManager.h */,
+				E5A9A2CA1909FE8700416680 /* DWPSSConnectionManager.m */,
 				E51D27D818D7BC1600F593AC /* Images.xcassets */,
 				E51D27C718D7BC1600F593AC /* Supporting Files */,
 			);
@@ -351,9 +356,10 @@
 				E51D27FA18DA657F00F593AC /* DWPhoto.m in Sources */,
 				E51D27D418D7BC1600F593AC /* AppDelegate.m in Sources */,
 				E58A747318EA5F0F009D6BFF /* DWPhotoWindowController.m in Sources */,
-				E5A9A2BD1909D2AB00416680 /* DWPacket.m in Sources */,
+				E5A9A2CB1909FE8700416680 /* DWPacket.m in Sources */,
 				E51D280218DBCE6600F593AC /* DWSlideshowController.m in Sources */,
 				E51D27CD18D7BC1600F593AC /* main.m in Sources */,
+				E5A9A2CC1909FE8700416680 /* DWPSSConnectionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
