@@ -19,7 +19,10 @@ typedef enum {
 } DWPacketType;
 
 typedef enum {
-    DWPacketActionUnknown = -1
+    DWPacketActionUnknown = -1,
+    DWPacketActionHidePhoto,
+    DWPacketActionNext,
+    DWPacketActionPrevious
 } DWPacketAction;
 
 @interface DWPacket : NSObject

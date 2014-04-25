@@ -64,16 +64,12 @@
         [newImageView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     }
     if (currentImageView && newImageView) {
-        NSLog(@"if branch");
         [[contentView animator] replaceSubview:currentImageView with:newImageView];
     } else {
-        NSLog(@"else branch");
         if (currentImageView) {
-            NSLog(@"currentImageView branch");
             [[currentImageView animator] removeFromSuperview];
         }
         if (newImageView) {
-            NSLog(@"newImageView branch");
             [[contentView animator] addSubview:newImageView];
         }
     }
@@ -82,11 +78,11 @@
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
     if(flag) {
-        NSLog(@"animation stopped yes");
+       // NSLog(@"animation stopped yes");
        // [sourceImageView setImage:[destinationImageView image]];
        // [destinationImageView removeFromSuperview];
     } else {
-        NSLog(@"animation stopped no");
+       // NSLog(@"animation stopped no");
     }
 }
 

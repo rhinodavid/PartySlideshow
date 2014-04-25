@@ -9,7 +9,6 @@
 #import "DWSlideshowController.h"
 #import "DWPhotoWindowController.h"
 #import <Quartz/Quartz.h>
-#import "DWPacket.h"
 
 @implementation DWSlideshowController
 {
@@ -30,7 +29,10 @@
 
 -(void) awakeFromNib {
     NSLog(@"awake");
-    [self startBroadcast];
+    _connectionManager = [[DWPSSConnectionManager alloc] init];
+    [_connectionManager setDelegate:self];
+    [_connectionManager startBroadcast];
+    
 
 }
 
@@ -97,13 +99,16 @@
 
 -(void)photoAdded:(DWPhoto *)addedPhoto {
     // if a new photo is added, send it to the connected handheld
-    if (_socket) {
+    
         NSString *path = [addedPhoto path];
         NSImage *image  = [[NSImage alloc] initWithContentsOfFile:path];
         if (image) {
-            [self sendImage:image];
+            NSLog(@"Sending newly found image");
+            NSImage *resizedImage = [self imageResize:image newSize:NSMakeSize(600, 600)];
+            NSData *imageJPGData = [self JPGRepresentationOfImage:resizedImage];
+            [_connectionManager sendImageAsData:imageJPGData];
         }
-    }
+    
 }
 
 #pragma mark -
@@ -150,84 +155,5 @@
 
 #pragma mark -
 #pragma mark Networking
-
-- (void) sendImage:(NSImage*)image {
-    NSLog(@"Sending newly found image");
-    NSImage *resizedImage = [self imageResize:image newSize:NSMakeSize(600, 600)];
-    NSData *imageJPGData = [self JPGRepresentationOfImage:resizedImage];
-    DWPacket *packet = [[DWPacket alloc] initWithData:imageJPGData type:DWPacketTypeImage action:0];
-    [self sendPacket:packet];
-}
-
-- (void)startBroadcast {
-    // Initialize GCDAsyncSocket
-    NSLog(@"Initializing broadcast....");
-    self.socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
-    
-    //start listening for incoming connnections
-    NSError *error = nil;
-    if ([self.socket acceptOnPort:0 error:&error]) {
-        //initialize service
-        self.service = [[NSNetService alloc] initWithDomain:@"local." type:@"_dwpartyslideshow._tcp." name:@"" port:[self.socket localPort]];
-        // Configure service
-        [self.service setDelegate:self];
-        // Publish Service
-        [self.service publish];
-    } else {
-        NSLog(@"Unable to create socket. Error %@ with user info %@.", error, [error userInfo]);
-    }
-}
-
-- (void)netServiceDidPublish:(NSNetService *)service {
-    NSLog(@"Bonjour Service Published: domain(%@) type(%@) name(%@) port(%i)", [service domain], [service type], [service name], (int)[service port]);
-}
-
-- (void)netService:(NSNetService *)service didNotPublish:(NSDictionary *)errorDict {
-    NSLog(@"Failed to Publish Service: domain(%@) type(%@) name(%@) - %@", [service domain], [service type], [service name], errorDict);
-}
-
-- (void)socket:(GCDAsyncSocket *)socket didAcceptNewSocket:(GCDAsyncSocket *)newSocket {
-    NSLog(@"Accepted New Socket from %@:%hu", [newSocket connectedHost], [newSocket connectedPort]);
-    
-    // Socket
-    [self setSocket:newSocket];
-    
-    // Read Data from Socket
-    [newSocket readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
-    
-    // Create Packet
-    NSString *message = @"This is a proof of concept.";
-    DWPacket *packet = [[DWPacket alloc] initWithData:message type:DWPacketTypeMessage action:0];
-    
-    [self sendPacket: packet];
-}
-
-- (void)sendPacket:(DWPacket *)packet {
-    // Encode packet data
-    NSMutableData *packetData = [[NSMutableData alloc] init];
-    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:packetData];
-    [archiver encodeObject:packet forKey:@"packet"];
-    [archiver finishEncoding];
-    
-    // Initialize Buffer
-    NSMutableData *buffer = [[NSMutableData alloc] init];
-    
-    // Fill Buffer
-    uint64_t headerLength = [packetData length];
-    [buffer appendBytes:&headerLength length:sizeof(uint64_t)];
-    [buffer appendBytes:[packetData bytes] length:[packetData length]];
-    
-    // Write Buffer
-    [self.socket writeData:buffer withTimeout:-1.0 tag:0];
-}
-
-- (void)socketDidDisconnect:(GCDAsyncSocket *)socket withError:(NSError *)error {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    if (self.socket == socket) {
-        [self.socket setDelegate:nil];
-        [self setSocket:nil];
-    }
-}
 
 @end
