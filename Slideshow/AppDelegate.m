@@ -63,6 +63,10 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
     [[self timeDelay] setStringValue:timeString];
 }
 
+- (IBAction)hideCurrentPhoto:(id)sender {
+    [[self slideshowController] hideCurrentPhoto];
+}
+
 - (IBAction)showPathOpenPanel:(id)sender
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
@@ -95,6 +99,8 @@ void myCallbackFunction (ConstFSEventStreamRef streamRef, void *clientCallBackIn
         //[self updateSlideshowSourceWithURL:url];
     }];
 }
+
+
 
 - (void) updateSlideshowSourceWithURL:(NSURL*)url {
     slideshowSource = [[DWSlideshowSource alloc] initWithBaseURL:url];

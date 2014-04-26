@@ -13,6 +13,9 @@
 
 -(void)connectedToService:(NSNetService *)service;
 -(void)connectionRecievedImageData:(NSData *)imageData;
+-(void)connectionRecievedImageName:(NSString *)name;
+-(void)connectionRecievedHidePhotoNamedCommand:(NSString *)name;
+
 
 @end
 
@@ -28,5 +31,7 @@
 - (void)startBrowsing;
 - (void)startBroadcast;
 - (void)sendImageAsData:(NSData*)image;
+- (void)sendImageName:(NSString*)name;
+- (void)sendHidePhotoNamedCommand:(NSString *)name;
 
 @end

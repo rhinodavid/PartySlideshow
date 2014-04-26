@@ -47,6 +47,15 @@
     [self sendPacket:packet];
 }
 
+-(void)sendImageName:(NSString *)name {
+    DWPacket *packet = [[DWPacket alloc] initWithData:name type:DWPacketTypeImageName action:0];
+    [self sendPacket:packet];
+}
+
+-(void) sendHidePhotoNamedCommand:(NSString *)name {
+    DWPacket *packet = [[DWPacket alloc] initWithData:name type:0 action:DWPacketActionHidePhoto];
+    [self sendPacket:packet];
+}
 
 #pragma mark -
 #pragma mark Client Methods
@@ -166,17 +175,18 @@
 - (void)socket:(GCDAsyncSocket *)socket didReadData:(NSData *)data withTag:(long)tag  {
     if (tag == 0) {
         uint64_t bodyLength = [self parseHeader:data];
-        [socket readDataToLength:bodyLength withTimeout:-1.0 tag:1];
+        [socket readDataToLength:bodyLength withTimeout:10.0 tag:1];
     } else if (tag == 1 ) {
         [self parseBody:data];
-        [socket readDataToLength:sizeof(uint64_t) withTimeout:30.0 tag:0];
+        //////////// It should say this but it is causing the conenction to drop
+        [socket readDataToLength:sizeof(uint64_t) withTimeout:-1.0 tag:0];
     }
 }
 
 - (uint64_t)parseHeader:(NSData *)data {
     uint64_t headerLength = 0;
     memcpy(&headerLength, [data bytes], sizeof(uint64_t));
-    
+    NSLog(@"Header length: %4.8llu", headerLength);
     return headerLength;
 }
 
@@ -189,10 +199,20 @@
     NSLog(@"Packet Type > %i", packet.type);
     NSLog(@"Packet Action > %i", packet.action);
     
-    
-    if (packet.type == DWPacketTypeImage) {
+    if (packet.type == DWPacketTypeConnection) {
+        NSString *message = @"This is a connection message reply.";
+        DWPacket *packet = [[DWPacket alloc] initWithData:message type:DWPacketTypeConnectionReply action:0];
+        
+        [self sendPacket: packet];
+    } else if (packet.type == DWPacketTypeImage) {
         NSData *JPGImage = packet.data;
         [_delegate connectionRecievedImageData:JPGImage];
+    } else if (packet.type == DWPacketTypeImageName) {
+        NSString *name = packet.data;
+        [_delegate connectionRecievedImageName:name];
+    } else if (packet.action == DWPacketActionHidePhoto) {
+        NSString *name = packet.data;
+        [_delegate connectionRecievedHidePhotoNamedCommand:name];
     }
 }
 
@@ -240,7 +260,7 @@
     
     // Create Packet
     NSString *message = @"This is a proof of concept.";
-    DWPacket *packet = [[DWPacket alloc] initWithData:message type:DWPacketTypeMessage action:0];
+    DWPacket *packet = [[DWPacket alloc] initWithData:message type:DWPacketTypeConnection action:0];
     
     [self sendPacket: packet];
 }

@@ -14,15 +14,20 @@ extern NSString * const MTPacketKeyAction;
 
 typedef enum {
     DWPacketTypeUnknown = -1,
+    DWPacketTypeNone = 0,
     DWPacketTypeImage,
-    DWPacketTypeMessage
+    DWPacketTypeMessage,
+    DWPacketTypeConnection,
+    DWPacketTypeConnectionReply,
+    DWPacketTypeImageName
 } DWPacketType;
 
 typedef enum {
     DWPacketActionUnknown = -1,
-    DWPacketActionHidePhoto,
+    DWPacketActionNone = 0,
+    DWPacketActionHidePhoto, //NSString of photo name to hide as packet data
     DWPacketActionNext,
-    DWPacketActionPrevious
+    DWPacketActionPrevious,
 } DWPacketAction;
 
 @interface DWPacket : NSObject

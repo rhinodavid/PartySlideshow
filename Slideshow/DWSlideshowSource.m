@@ -102,6 +102,26 @@
     return NO;
 }
 
+- (BOOL)hidePhotoWithFileName:(NSString *)fileName {
+    DWPhoto *photo = [self getPhotoWithFileName:fileName];
+    if (!photo) {
+        //no photos were found
+        return NO;
+    } else {
+        [photo setDisplay:NO];
+        return YES;
+    }
+}
+
+- (DWPhoto *)getPhotoWithFileName:(NSString*)fileName {
+    for (DWPhoto* thisPhoto in photos) {
+        if ([thisPhoto.fileName isEqualToString:fileName]) {
+            return thisPhoto;
+        }
+    }
+    return nil;
+}
+
 - (BOOL)photosToDisplay {
     for (DWPhoto* photo in photos) {
         if (photo.display) {

@@ -24,6 +24,7 @@
 
 - (id)initWithBaseURL:(NSURL*)url;
 - (int)syncPhotos;
+- (BOOL)hidePhotoWithFileName:(NSString*)fileName;
 - (DWPhoto*)nextPhoto;
 
 @end

@@ -18,6 +18,7 @@
                 <outlet property="controlWindow" destination="QvC-M9-y7g" id="eH0-qH-SsU"/>
                 <outlet property="controller" destination="8Gq-fQ-dwU" id="GV1-hi-6mK"/>
                 <outlet property="durationSlider" destination="XbD-NL-CYS" id="Eko-eP-d2V"/>
+                <outlet property="hideCurrentPictureButton" destination="mC8-B1-j2n" id="MXH-fG-H7b"/>
                 <outlet property="pathControl" destination="vrh-6z-Esz" id="Ojd-CF-Ipk"/>
                 <outlet property="playButton" destination="2Yx-by-g3V" id="fNm-0M-BDW"/>
                 <outlet property="setPathButton" destination="HM3-uv-jqx" id="Tsh-U0-Q5p"/>
@@ -214,12 +215,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-zz-S20">
                         <rect key="frame" x="106" y="146" width="181" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="Fade" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2WY-xE-LMQ" id="p4h-s7-BGl">
+                        <popUpButtonCell key="cell" type="push" title="Fade" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="2WY-xE-LMQ" id="p4h-s7-BGl">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="znz-BY-RZE">
                                 <items>
-                                    <menuItem title="Fade" id="2WY-xE-LMQ"/>
+                                    <menuItem title="Fade" state="on" id="2WY-xE-LMQ"/>
                                 </items>
                             </menu>
                         </popUpButtonCell>
@@ -270,6 +271,17 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button appearanceType="aqua" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mC8-B1-j2n">
+                        <rect key="frame" x="337" y="99" width="123" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="roundRect" title="Hide current picture" bezelStyle="roundedRect" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="63V-GC-Bb5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="hideCurrentPhoto:" target="Voe-Tx-rLC" id="pqf-BQ-diN"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="vrh-6z-Esz" secondAttribute="trailing" constant="19" id="DPY-we-GqA"/>

@@ -24,5 +24,6 @@
 @property (weak) IBOutlet NSButton *stopButton;
 @property (weak) IBOutlet NSColorWell *backgroundColorWell;
 @property (weak) IBOutlet DWSlideshowController *slideshowController;
+@property (weak) IBOutlet NSButton *hideCurrentPictureButton;
 
 @end

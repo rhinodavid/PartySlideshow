@@ -15,10 +15,13 @@
 @property (strong, nonatomic) DWSlideshowSource *slideshowSource;
 @property NSColor *backgroundColor;
 @property (strong, nonatomic) DWPSSConnectionManager *connectionManager;
+@property (strong, nonatomic) DWPhoto *currentPhoto;
 
 
 -(void)play;
 -(void)updateTimeInterval:(double)newTimeInterval;
 -(void)stop;
+-(void)hideCurrentPhoto;
+
 
 @end

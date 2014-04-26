@@ -23,7 +23,8 @@
 -(id) init {
     self = [super init];
     // do special stuff
-    timeInterval = 8.0;
+    timeInterval = 6.0;
+    _currentPhoto = nil;
     return self;
 }
 
@@ -88,7 +89,8 @@
 }
 
 -(void)showNextImage:(NSTimer*)timer {
-    NSString *nextPath = [[_slideshowSource nextPhoto] path];
+    _currentPhoto = [_slideshowSource nextPhoto];
+    NSString *nextPath = [_currentPhoto path];
     NSImage *image = [[NSImage alloc] initWithContentsOfFile:nextPath];
     if (!image) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"waiting1" ofType:@"jpg"];
@@ -107,8 +109,13 @@
             NSImage *resizedImage = [self imageResize:image newSize:NSMakeSize(600, 600)];
             NSData *imageJPGData = [self JPGRepresentationOfImage:resizedImage];
             [_connectionManager sendImageAsData:imageJPGData];
+            [_connectionManager sendImageName:addedPhoto.fileName];
         }
     
+}
+
+- (void)hideCurrentPhoto {
+    [_currentPhoto setDisplay:NO];
 }
 
 #pragma mark -
@@ -155,5 +162,9 @@
 
 #pragma mark -
 #pragma mark Networking
+
+- (void)connectionRecievedHidePhotoNamedCommand:(NSString *)name {
+    [self.slideshowSource hidePhotoWithFileName:name];
+}
 
 @end
